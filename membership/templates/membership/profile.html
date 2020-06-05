@@ -1,0 +1,29 @@
+{% extends 'membership/base.html' %}
+{% block content %}
+{% include 'membership/navbar.html' %}
+    <div class="container mt-4 col-lg-6">
+        {% for message in messages %}
+            <div class="alert alert-info">
+                {{message}}
+            </div>
+        {% endfor %}
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Hello {{request.user.first_name|title}} {{request.user.last_name|title}}</h5>
+                <p class="card-text"><strong>Your current membership: </strong>{{membership}}</p>
+                <p class="card-title"><strong>Since: </strong>{{user.date_added}}</p>
+                {% if membership == 'Free' %}
+                    <a class="btn btn-primary" href="{% url 'buy_subs' %}">Upgrade membership</a>
+                {% elif membership == 'Silver' %}
+                    <a class="btn btn-warning" href="{% url 'cancel' %}">Cancel membership</a>
+                    <a class="btn btn-primary" href="{% url 'buy_subs' %}">Upgrade membership</a>
+                {% else %}
+                    <a class="btn btn-warning" href="{% url 'cancel' %}">Cancel membership</a>
+                {% endif %}
+
+            </div>
+
+        </div>
+
+    </div>
+{% endblock %}

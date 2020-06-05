@@ -1,0 +1,18 @@
+{% extends 'membership/base.html' %}
+{% block content %}
+{% include 'membership/navbar.html' %}
+    <div class="container mt-4 col=lg-6">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Are you sure you want to cancel your membership?</h5>
+                <a class="btn btn-danger" href="{% url 'cancel_mem' %}">Yes, cancel membership</a>
+                <a class="btn btn-dark" href="{% url 'profile' %}">No, don't cancel</a>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends 'membership/base.html' %}
+{% block content %}
+<title>Login</title>
+<body>
+    <div class="container">
+        
+            {% for message in messages %}
+              <div class="alert alert-warning">
+                {{message}}
+              </div>
+            {% endfor %}
+        <h3>Login Form</h3>
+        <form class="mt-4" method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+              <label for="exampleInputEmail1">Username</label>
+              <input type="text" class="form-control" id="exampleInputEmail1" name="uname">
+            </div>
+            <div class="form-group">
+              <label for="exampleInputPassword1">Password</label>
+              <input type="password" class="form-control" id="exampleInputPassword1" name="pwd">
+            </div>
+            
+            <button type="submit" class="btn btn-primary">Login</button>
+          </form>
+          New user?<a class="btn btn-dark" href="{% url 'register' %}">SignUp</a>
+    </div>
+</body>
+{% endblock %}

@@ -1,0 +1,54 @@
+{% extends 'membership/base.html' %}
+{% block content %}
+{% include 'membership/navbar.html' %}
+
+    <div class=" container mt-4">
+        
+        <div class="alert alert-success">
+            <h2 class="my-4"><center>Buy a subscription</center></h2>
+            {% for message in messages %}
+                <center>{{message}}</center>
+            {% endfor %}
+        </div>
+        
+        <div class="row">
+        {% for membership in memberships %}
+        
+            <div class="card col-lg-3 mx-auto">
+                <div class="card-body">
+                    <div class="alert alert-dark">
+                        <h5 class="cad-title">{{membership.membership_type}}</h5>
+                    </div>
+                    
+                    {% if membership.membership_type != 'Free' %}
+                        <p class="card-text" >{{membership.desc}}</p>
+                        <p class="card-text"><strong>Price: </strong>Rs.{{membership.price}}/year</p>
+                        {% if curr_user_membership != membership.membership_type  %}
+                            <a class="btn btn-warning" href="{% url 'payment' membership.slug %}">Buy</a>
+                        {% else %}
+
+                            <div class="alert alert-primary">
+                                <p class="card-text">This is your current subscription.</p>
+
+                            </div>    
+                        {% endif %}
+                    {% else %}
+                        <p class="card-text" >{{membership.desc}}</p> 
+                        <p class="card-text"><strong>Price: </strong>Rs.{{membership.price}}</p>
+                        {% if curr_user_membership == 'Free' %}
+                        <div class="alert alert-primary">
+                            <p class="card-text">This is your current subscription.</p>
+
+                        </div> 
+                        {% endif %} 
+                    {% endif %}
+                </div>
+
+            </div>
+
+        
+        {% endfor %}
+        </div>
+
+    </div>
+{% endblock %}
