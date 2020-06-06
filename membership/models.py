@@ -12,10 +12,10 @@ MEMBERSHIP_CHOICES = (
 )
 
 MOVIE_CATEGORY = (
-    ('Hollywood', 'holly'),
-    ('Bollywood', 'bolly'),
-    ('Dual audio', 'dual'),
-    ('Uncategorized', 'uncategorized')
+    ('Hollywood', 'Hollywood'),
+    ('Bollywood', 'Bollywood'),
+    ('Dual audio', 'Dual audio'),
+    ('Uncategorized', 'Uncategorized')
 )
 
 class Membership(models.Model):

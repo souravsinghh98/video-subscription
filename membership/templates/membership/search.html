@@ -1,0 +1,25 @@
+{% extends 'membership/base.html' %}
+{% block content %}
+{% include 'membership/navbar.html' %}
+<div class="container mt-4">
+{% if movies is not None %}
+    <div class="row">
+    {% for movie in movies %}
+        <div class="card col-lg-3">
+            <div class="card-body">
+                <a href="{% url 'movie_view' movie.id %}">
+                <img src="{{movie.thumbnail.url}}" height="286" width="180">
+                </a>
+                <h5 class="card-title">{{movie.title}}</h5>
+                <p class="card-text"><strong>Subscription: </strong>{{movie.allowed_memberships}}</p>
+            </div>
+        </div>
+    {% endfor %}
+    </div>
+{% else %}
+<h3>Nothing found</h3>    
+
+{% endif %}
+</div>
+
+{% endblock %}

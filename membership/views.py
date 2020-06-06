@@ -13,11 +13,10 @@ from math import ceil
 # Create your views here.
 def home(request):
     movie = Movie.objects.all().order_by('-id')
-    hollywood = Movie.objects.filter(category='Hollywood')
-    bollywood = Movie.objects.filter(category='Bollywood')
+    movie_category = ['Hollywood', 'Bollywood']
     myFilter = MovieFilter(request.GET, queryset=movie)
     movie = myFilter.qs
-    context = {'movies':movie,'myFilter':MovieFilter,'hollywood':hollywood, 'bollywood':bollywood}
+    context = {'movies':movie,'myFilter':MovieFilter, 'movie_category':movie_category}
     return render(request, 'membership/home.html', context)
 
 @login_required(login_url='login')
@@ -34,8 +33,15 @@ def movie(request,pk):
         messages.info(request, 'Upgrade your subscription to access the content')
         return redirect('buy_subs')
     
+def movieSearch(request):
+    entered = request.GET['entered']
+    movie = Movie.objects.filter(title__icontains=entered)
+    return render(request, 'membership/search.html',{'movies':movie})
 
-    
+
+def categoryView(request, category):
+    movie = Movie.objects.filter(category=category)
+    return render(request, 'membership/category.html', {'movies':movie})
        
 @login_required(login_url='login')
 def buy_subscription(request):

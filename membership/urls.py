@@ -12,4 +12,6 @@ urlpatterns = [
     path('confirm/', views.confirmCancel, name='cancel'),
     path('cancel/', views.cancel, name='cancel_mem'),
     path('profile/', views.userProfile, name='profile'),
+    path('search/', views.movieSearch, name='search'),
+    path('category/<category>', views.categoryView, name='category'),
 ]
