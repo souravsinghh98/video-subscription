@@ -96,14 +96,14 @@ def signout(request):
     return redirect('home')
 
 @login_required(login_url='login')
-def payment_page(request,slug):
-    selected_membership = Membership.objects.get(slug=slug)
+def payment_page(request,pk):
+    selected_membership = Membership.objects.get(id=pk)
     context = {'memberships':selected_membership}
     return render(request, 'membership/payment.html', context)
 
 @login_required(login_url='login')
-def checkout(request, slug):
-    membership = Membership.objects.get(slug=slug)
+def checkout(request, pk):
+    membership = Membership.objects.get(id=pk)
     curr_user = UserMembership.objects.get(user=request.user)
     membership_group = Group.objects.get(name=membership)
     request.user.groups.add(membership_group)

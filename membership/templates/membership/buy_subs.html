@@ -24,7 +24,7 @@
                         <p class="card-text" >{{membership.desc}}</p>
                         <p class="card-text"><strong>Price: </strong>Rs.{{membership.price}}/year</p>
                         {% if curr_user_membership != membership.membership_type  %}
-                            <a class="btn btn-warning" href="{% url 'payment' membership.slug %}">Buy</a>
+                            <a class="btn btn-warning" href="{% url 'payment' membership.id %}">Buy</a>
                         {% else %}
 
                             <div class="alert alert-primary">

@@ -19,7 +19,6 @@ MOVIE_CATEGORY = (
 )
 
 class Membership(models.Model):
-    slug = models.SlugField()
     membership_type = models.CharField(choices=MEMBERSHIP_CHOICES, max_length=50, default='Free')
     desc = models.TextField(null=True)
     price = models.IntegerField(default=15)
